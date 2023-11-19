@@ -1,0 +1,43 @@
+version: '3.8'
+
+networks:
+  red_mysql_spring:
+
+volumes:
+  mysql-data:
+    name: mysql-data
+
+services:
+  bd:
+    container_name: bd
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_docker_backend
+    restart: always
+    networks:
+      - red_mysql_spring
+    volumes:
+      - mysql-data:/var/lib/mysql
+  proyecto:
+    container_name: proyecto
+    image: image-spring-boot:latest
+    ports:
+      - "8097:8097" 
+    restart: always
+    networks:
+      - red_mysql_spring
+    depends_on:
+      - bd
+  frontend:
+    container_name: frontend
+    image: image-frontend:latest
+    ports:
+      - "4200:80" 
+    restart: always
+    networks:
+      - red_mysql_spring
+    depends_on:
+      - proyecto
