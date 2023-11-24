@@ -15,7 +15,7 @@
   
 
 
-## :hammer: Funcionalidades de los proyectos
+## Funcionalidades de los proyectos
 
 Si bien realicé dos proyectos con diferentes tecnologías, ambos proyectos tienen las siguiente funcionalidaes: 
 
